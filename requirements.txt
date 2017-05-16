@@ -1,0 +1,27 @@
+appdirs==1.4.3
+hupper==0.5
+Jinja2==2.9.6
+Mako==1.0.6
+MarkupSafe==1.0
+packaging==16.8
+PasteDeploy==1.5.2
+pkg-resources==0.0.0
+Pygments==2.2.0
+pyparsing==2.2.0
+pyramid==1.8.3
+pyramid-debugtoolbar==4.0.1
+-e git+git@github.com:onaio/pyramid-experiment.git@b511f54e2a8105fb3d9f69f826be6d35f85c82f1#egg=pyramid_experiment
+pyramid-jinja2==2.7
+pyramid-mako==1.0.2
+pyramid-tm==2.0
+repoze.lru==0.6
+six==1.10.0
+SQLAlchemy==1.1.9
+transaction==2.1.2
+translationstring==1.3
+venusian==1.1.0
+waitress==1.0.2
+WebOb==1.7.2
+zope.deprecation==4.2.0
+zope.interface==4.4.1
+zope.sqlalchemy==0.7.7
