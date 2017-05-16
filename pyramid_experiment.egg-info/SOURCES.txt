@@ -17,6 +17,9 @@ pyramid_experiment.egg-info/not-zip-safe
 pyramid_experiment.egg-info/requires.txt
 pyramid_experiment.egg-info/top_level.txt
 pyramid_experiment/models/__init__.py
+pyramid_experiment/models/category.py
+pyramid_experiment/models/country.py
+pyramid_experiment/models/customer.py
 pyramid_experiment/models/meta.py
 pyramid_experiment/models/mymodel.py
 pyramid_experiment/scripts/__init__.py
@@ -37,10 +40,8 @@ pyramid_experiment/static/js/bootstrap-tabs.js
 pyramid_experiment/static/js/bootstrap-twipsy.js
 pyramid_experiment/static/js/jquery-1.7.min.js
 pyramid_experiment/templates/404.jinja2
-pyramid_experiment/templates/dashboard.jinja2
 pyramid_experiment/templates/layout.jinja2
 pyramid_experiment/templates/mytemplate.jinja2
 pyramid_experiment/views/__init__.py
-pyramid_experiment/views/dashboard.py
 pyramid_experiment/views/default.py
 pyramid_experiment/views/notfound.py
