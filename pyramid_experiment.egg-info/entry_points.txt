@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = pyramid_experiment:main
+      [console_scripts]
+      initialize_pyramid-experiment_db = pyramid_experiment.scripts.initializedb:main
+      
