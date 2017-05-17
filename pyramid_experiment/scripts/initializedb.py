@@ -15,7 +15,7 @@ from ..models import (
     get_session_factory,
     get_tm_session,
     )
-from ..models import MyModel
+from ..models import Country, Category, Customer
 
 
 def usage(argv):
@@ -41,5 +41,15 @@ def main(argv=sys.argv):
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
 
-        model = MyModel(name='one', value=1)
-        dbsession.add(model)
+        customer = Customer(
+            company_name=u'Tech Services LTD',
+            category_id=200)
+        dbsession.add(customer)
+
+        country = Country(
+            code=u'+254',
+            name=u'Kenya')
+        dbsession.add(country)
+
+        category = Category(name=u'Reseller')
+        dbsession.add(category)

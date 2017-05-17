@@ -22,7 +22,7 @@ class Customer(Base):
     # nullable = false, the customer must have a category
     category_id = Column(Integer, ForeignKey('category.category_id',
         name="fk_customer_category", onupdate='CASCADE', ondelete='RESTRICT'), nullable=False)
-    category = relationship("Category", passive_deletes=True, passive_updates=True)
+    category = relationship("Category", passive_updates=True)
     contact_title = Column(Unicode(50))
     contact_first_name = Column(Unicode(50))
     contact_last_name = Column(Unicode(50))
@@ -33,7 +33,7 @@ class Customer(Base):
     # foreing key, nullable =  true 
     country_id = Column(Integer, ForeignKey('country.country_id',
         name='fk_customer_country', onupdate='CASCADE', ondelete='RESTRICT'), nullable=True)
-    country = relationship("Country", passive_deletes=True, passive_updates=True)
+    country = relationship("Country", passive_updates=True)
     mobile = Column(Unicode(50))
     email = Column(Unicode(50))
     notes = Column(Text)

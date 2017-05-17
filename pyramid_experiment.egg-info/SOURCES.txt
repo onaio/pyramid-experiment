@@ -42,6 +42,12 @@ pyramid_experiment/static/js/jquery-1.7.min.js
 pyramid_experiment/templates/404.jinja2
 pyramid_experiment/templates/layout.jinja2
 pyramid_experiment/templates/mytemplate.jinja2
+pyramid_experiment/templates/uiHelpers.jinja2
+pyramid_experiment/templates/customer/fields.jinja2
+pyramid_experiment/templates/customer/new.jinja2
 pyramid_experiment/views/__init__.py
+pyramid_experiment/views/category.py
+pyramid_experiment/views/country.py
+pyramid_experiment/views/customer.py
 pyramid_experiment/views/default.py
 pyramid_experiment/views/notfound.py
