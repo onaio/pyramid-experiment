@@ -13,7 +13,7 @@
 }
 
 .search-box input {
-    background: url("/static/images/12/search.png") no-repeat scroll 5px center padding-box #FFFFFF;
+    background: url("/static/images/search.png") no-repeat scroll 5px center padding-box #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.33);
     border-radius: 12px 12px 12px 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 0.33);
@@ -30,11 +30,11 @@
 }
 
 .sortable th .asc {
-	background-image: url("/static/images/12/up_arrow.gif");
+	background-image: url("/static/images/up_arrow.gif");
 }
 
 .sortable th .desc {
-	background-image: url("/static/images/12/down_arrow.gif");
+	background-image: url("/static/images/down_arrow.gif");
 }
 
 /* paginate */

@@ -239,6 +239,9 @@ a:hover {
 }
 .pull-right {
   float: right;
+  position: relative;
+  top: 44%;
+  right: 2%;
 }
 .pull-left {
   float: left;
@@ -250,8 +253,9 @@ a:hover {
   display: block;
 }
 .row {
-  zoom: 1.6;
+  zoom: 1.2;
   margin-left: -20px;
+  margin-top: -12px;
   padding: 1em;
 }
 .row:before, .row:after {

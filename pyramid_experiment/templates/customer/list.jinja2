@@ -1,0 +1,21 @@
+{% extends '../layout.jinja2' %}
+
+{% block content %}
+<div class="page-header">
+	<h1 class="pull-left">Customers List</h1>
+  	<div class="pull-right">
+		<a class="btn primary" style="margin-right:10px; height:15px;" 
+			href="{{request.route_url('customer_new')}}">Add New Customer</a>
+		<div id="quicksearch" class="search-box">
+			<form method="get" action="{{request.route_url('customer_list')}}">
+				<input name="search" type="text" value="" placeholder="Search Customer">
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span14">
+  </div>
+</div>
+{% endblock content %}
