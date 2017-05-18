@@ -6,12 +6,15 @@
 </div>
 <div class="row">
   <div class="span14">
+  		{{form.begin(url=action_url, method="post")}}
 
-	    <div class="actions">
+  		{% include 'fields.jinja2' %}
+	    <div class="actions" style="background: none;">
 			<input type="submit" name="form_submitted" value="Save" class="btn primary">
 			<input type="reset" name="form_reset" value="Cancel" class="btn"
 				onclick="location.href='{{request.route_url('customer_list')}}'">
 	    </div>
+	    {{form.end()}}
   </div>
 </div>
 {% endblock content %}

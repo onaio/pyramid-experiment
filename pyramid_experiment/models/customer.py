@@ -15,7 +15,7 @@ from .meta import Base
 class Customer(Base):
     """Declarative model class for Customer object. """
     __tablename__ = 'customer'
-    
+
     id = Column('customer_id', Integer, primary_key=True) 
     company_name = Column(Unicode(100), nullable=False, unique=True)
     # foreing key

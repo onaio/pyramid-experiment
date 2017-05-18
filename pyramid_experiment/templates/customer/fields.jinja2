@@ -1,7 +1,3 @@
-<%namespace file="./uiHelpers.html" import="validate_errors"/>
-
-{{form.csrf_token()}}
-
 <ul data-tabs="tabs" class="tabs">
 	<li class="active"><a href="#general">General</a></li>
 	<li class=""><a href="#address">Address</a></li>
@@ -11,11 +7,10 @@
 
 <div class="tab-content" id="my-tab-content">
 	<div id="general" class="tab-pane active">
-		<div class="${'clearfix error' if form.errors_for('company_name') else 'clearfix'}">
+		<div class="{{'clearfix error' if form.errors_for('company_name') else 'clearfix'}}">
 			<label for="company_name">Company Name</label>
 			<div class="input">
 				{{form.text("company_name", class_="xlarge", maxlength="100")}}
-				{{validate_errors("company_name")}}
 			</div>
 		</div>
 		<div class="clearfix">
@@ -32,18 +27,16 @@
 				{{form.text("contact_title", class_="small", maxlength="50")}}
 			</div>
 		</div>
-		<div class="${'clearfix error' if form.errors_for('contact_first_name') else 'clearfix'}">
+		<div class="{{'clearfix error' if form.errors_for('contact_first_name') else 'clearfix'}}">
 			<label for="contact_first_name">First Name</label>
 			<div class="input">
 				{{form.text("contact_first_name", class_="xlarge", maxlength="50")}}
-				{{validate_errors("contact_first_name")}}
 			</div>
 		</div>
-		<div class="${'clearfix error' if form.errors_for('contact_last_name') else 'clearfix'}">
+		<div class="{{'clearfix error' if form.errors_for('contact_last_name') else 'clearfix'}}">
 			<label for="contact_last_name">Last Name</label>
 			<div class="input">
 				{{form.text("contact_last_name", class_="xlarge", maxlength="50")}}
-				{{validate_errors("contact_last_name")}}
 			</div>
 		</div>
 	</div>
@@ -86,18 +79,6 @@
 	
 	<div id="communication" class="tab-pane">
 		<div class="clearfix">
-			<label for="phone">Phone</label>
-			<div class="input">
-				{{form.text("phone", class_="xlarge", maxlength="50")}}
-			</div>
-		</div>
-		<div class="clearfix">
-			<label for="fax">Fax</label>
-			<div class="input">
-				{{form.text("fax", class_="xlarge", maxlength="50")}}
-			</div>
-		</div>
-		<div class="clearfix">
 			<label for="mobile">Mobile</label>
 			<div class="input">
 				{{form.text("mobile", class_="xlarge", maxlength="50")}}
@@ -112,18 +93,6 @@
   				</div>
 			</div>
   		</div>
-		<div class="clearfix">
-			<label for="homepage">Homepage</label>
-			<div class="input">
-				{{form.text("homepage", class_="xlarge", maxlength="50")}}
-			</div>
-		</div>
-		<div class="clearfix">
-			<label for="skype">Skype</label>
-			<div class="input">
-				{{form.text("skype", class_="xlarge", maxlength="50")}}
-			</div>
-		</div>
     </div>
 	<div id="notes" class="tab-pane">
 		<div class="clearfix">

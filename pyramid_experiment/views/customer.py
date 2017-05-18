@@ -60,6 +60,7 @@ def list(request):
     page_url = paginate.PageURL_WebOb(request)
     customers = Page(query, page=int(request.params.get('page', 1)),
                      items_per_page=10, url=page_url)
+
     if 'partial' in request.params:
         return render_to_response('../templates/customer/listPartial.jinja2'
                                   , {'customers': customers},
@@ -83,6 +84,7 @@ def new(request):
         customer = form.bind(Customer())
         dbsession.add(customer)
         return HTTPFound(location=request.route_url('customer_list'))
+
     return dict(form=FormRenderer(form), categories=categories,
                 countries=countries,
                 action_url=request.route_url('customer_new'))
