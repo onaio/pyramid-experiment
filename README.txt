@@ -1,4 +1,5 @@
-pyramid-experiment README
+Simple Customer management dashboard built using python pyramid framework
+
 ==================
 
 Getting Started
