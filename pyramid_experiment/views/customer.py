@@ -96,8 +96,11 @@ def new(request):
 
 @view_config(route_name='customer_search')
 def search(request):
-    return Response('OK')
+    sort = request.GET.get('sort') if request.GET.get('sort') else 'company_name'
+    direction = 'desc' if request.GET.get('direction') == 'asc' else 'asc'
+    query = {'sort': sort, 'direction': direction}
 
+    return HTTPFound(location=request.route_url('customer_list', query=query))
 
 @view_config(route_name='customer_edit', renderer='../templates/customer/edit.jinja2')
 def edit(request):
