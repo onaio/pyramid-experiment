@@ -4,9 +4,11 @@ from pyramid_simpleform import Form
 from pyramid_simpleform.renderers import FormRenderer
 from pyramid.httpexceptions import HTTPFound
 from pyramid.renderers import render_to_response
+from sqlalchemy.exc import IntegrityError
 from webhelpers import paginate
 from webhelpers.paginate import Page
 from formencode import Schema, validators
+import transaction
 
 from ..models import Customer, Category, Country
 
@@ -60,10 +62,11 @@ def list(request):
     page_url = paginate.PageURL_WebOb(request)
     customers = Page(query, page=int(request.params.get('page', 1)),
                      items_per_page=10, url=page_url)
+    # import ipdb; ipdb.set_trace()
 
     if 'partial' in request.params:
-        return render_to_response('../templates/customer/listPartial.jinja2'
-                                  , {'customers': customers},
+        return render_to_response('../templates/customer/listPartial.jinja2',
+                                  {'customers': customers},
                                   request=request)
     else:
         return render_to_response('../templates/customer/list.jinja2',
@@ -80,9 +83,10 @@ def new(request):
     countries = get_countries(request)
 
     form = Form(request, schema=CustomerForm)
+
     if 'form_submitted' in request.POST and form.validate():
         customer = form.bind(Customer())
-        dbsession.add(customer)
+        request.dbsession.add(customer)
         return HTTPFound(location=request.route_url('customer_list'))
 
     return dict(form=FormRenderer(form), categories=categories,
@@ -95,14 +99,46 @@ def search(request):
     return Response('OK')
 
 
-@view_config(route_name='customer_edit')
+@view_config(route_name='customer_edit', renderer='../templates/customer/edit.jinja2')
 def edit(request):
-    return Response(request.matchdict['id'])
+    id = request.matchdict['id']
+    customer = request.dbsession.query(Customer).filter_by(id=id).one()
+    if customer is None:
+        return HTTPFound(location=request.route_url('customer_list'))
+
+    countries = get_countries(request)
+    categories = get_categories(request)
+
+    form = Form(request, schema=CustomerForm, obj=customer)
+
+    if 'form_submitted' in request.POST and form.validate():
+        form.bind(customer)
+        request.dbsession.add(customer)
+        return HTTPFound(location=request.route_url('customer_list'))
+
+    action_url = request.route_url('customer_edit', id=id)
+    return dict(form=FormRenderer(form), categories=categories,
+                countries=countries, action_url=action_url)
 
 
 @view_config(route_name='customer_delete')
 def delete(request):
-    return Response(request.matchdict['id'])
+    id = request.matchdict['id']
+    customer = \
+        request.dbsession.query(Customer).filter_by(id=id).first()
+    if customer is None:
+        return HTTPFound(location=request.route_url('cusomer_list'))
+
+    try:
+        transaction.begin()
+        request.dbsession.delete(customer)
+        transaction.commit()
+    except IntegrityError:
+
+        transaction.abort()
+
+    return HTTPFound(location=request.route_url('customer_list'))
+
 
 
 def get_countries(request):

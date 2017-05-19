@@ -1,6 +1,58 @@
 {% extends '../layout.jinja2' %}
 
 {% block content %}
+
 <div class="list-partial">
+		{%- if customers.item_count -%}
+		<table class="condensed-table zebra-striped sortable">
+			<thead>
+				<tr>
+				<th style="width: 300px;">Company Name</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Category</th>
+				<th style="width: 130px;"></th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for item in customers %}
+			<tr>
+				<td valign="top">
+					<a href="/customers/{{item.id}}/edit">{{item.company_name}}
+					</a>
+				</td>
+				<td valign="top">
+					<a href="/customers/{{item.id}}/edit">
+						{{item.contact_first_name}}
+					</a
+				</td>
+				<td valign="top">
+					<a href="/customers/{{item.id}}/edit">
+						{{item.contact_last_name}}
+					</a>
+				</td>
+				<td valign="top">
+					<a href="/customers/{{item.id}}/edit">
+						{{item.category.name}}
+					</a>
+				</td>
+				<td valign="top">
+					<a class="btn" href="/customers/{{item.id}}/edit" style="height: 14px;">
+						Edit
+					</a>
+					<a class="btn" style="height: 14px;" data-controls-modal="confirm-modal"
+						data-backdrop="true" data-keyboard="true"
+						href="javascript:;"
+						onclick="">
+						Delete
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<p>
+	</p>
+	{%- endif %}
 </div>
 {% endblock content %}
