@@ -1,5 +1,6 @@
 import unittest
 import transaction
+from pyramid.renderers import render_to_response
 
 from pyramid import testing
 
@@ -46,14 +47,6 @@ class BaseTest(unittest.TestCase):
                              address=67652,
                              city=u'Dodoma',
                              country=u'Tanzania')
-        customer2 = Customer(id=6,
-                             company_name= u'Isuzu',
-                             category_id=44,
-                             address=63739,
-                             city=u'Nairobi',
-                             country=u'Kenya')
-
-
 
 class TestMyViewSuccessCondition(BaseTest):
 
@@ -95,9 +88,17 @@ class CustomerViewTest(BaseTest):
         customer = Customer(company_name=u'Itech', category_id=109)
         self.session.add(customer)
         self.config.add_route('customer_new', 'customers/new')
+        self.config.add_route('customer_edit', 'customers/{id}/edit')
+        
 
     def test_new_customer_view(self):
 
         from .views.customer import new
         info = new(dummy_request(self.session))
         self.assertEqual(info['action_url'], 'http://example.com/customers/new')
+
+    def test_edit_customers(self):
+        from .views.customer import edit
+        import pdb; pdb.set_trace()
+        info = edit(dummy_request(self.session))
+        import pdb; pdb.set_trace()

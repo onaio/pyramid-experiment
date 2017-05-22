@@ -15,7 +15,7 @@ from ..models import (
     get_session_factory,
     get_tm_session,
     )
-from ..models import Country, Category, Customer
+from ..models import Country, Category, Customer, User
 
 
 def usage(argv):
@@ -53,3 +53,11 @@ def main(argv=sys.argv):
 
         category = Category(name=u'Reseller')
         dbsession.add(category)
+
+        editor = User(name='editor', role='editor')
+        editor.set_password('editor')
+        dbsession.add(editor)
+
+        basic = User(name='basic', role='basic')
+        basic.set_password('basic')
+        dbsession.add(basic)

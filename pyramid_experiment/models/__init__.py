@@ -9,7 +9,7 @@ from .mymodel import MyModel  # noqa
 from .category import Category # noqa
 from .customer import Customer # noqa
 from .country import Country # noqa
-
+from .user import User # noqa
 # run configure_mappers after defining all of the models to ensure
 # all relationships can be setup
 configure_mappers()

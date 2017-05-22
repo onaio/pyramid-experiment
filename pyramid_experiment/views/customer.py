@@ -2,7 +2,7 @@ from pyramid.view import view_config
 from pyramid.response import Response
 from pyramid_simpleform import Form
 from pyramid_simpleform.renderers import FormRenderer
-from pyramid.httpexceptions import HTTPFound
+from pyramid.httpexceptions import (HTTPFound, HTTPForbidden)
 from pyramid.renderers import render_to_response
 from sqlalchemy.exc import IntegrityError
 from webhelpers import paginate
@@ -10,7 +10,7 @@ from webhelpers.paginate import Page
 from formencode import Schema, validators
 import transaction
 
-from ..models import Customer, Category, Country
+from ..models import Customer, Category, Country, User
 
 
 class CustomerForm(Schema):
@@ -83,6 +83,9 @@ def new(request):
     countries = get_countries(request)
 
     form = Form(request, schema=CustomerForm)
+
+    user = request.user
+    import ipdb; ipdb.set_trace()
 
     if 'form_submitted' in request.POST and form.validate():
         customer = form.bind(Customer())

@@ -26,3 +26,6 @@ def includeme(config):
     config.add_route('category_edit', 'category/{id}/edit')
     config.add_route('category_delete', 'category/{id}/delete')
 
+    # login routes
+    config.add_route('login', '/login')
+    config.add_route('logout', '/logout')
