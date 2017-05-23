@@ -1,3 +1,14 @@
+from pyramid.httpexceptions import (
+    HTTPNotFound,
+    HTTPFound,
+)
+from pyramid.security import (
+    Allow,
+    Everyone,
+)
+
+from .models import Customer
+
 def includeme(config):
     config.add_static_view('static', 'static', cache_max_age=3600)
 
@@ -14,7 +25,7 @@ def includeme(config):
     config.add_route('customer_list', 'customers/list')
     config.add_route('customer_search', 'customers/search')
     config.add_route('customer_new', 'customers/new')
-    config.add_route('customer_edit', 'customers/{id}/edit')
+    config.add_route('customer_edit', 'customers/{id}/edit', factory=edit_customer_factory)
     config.add_route('customer_delete', 'customers/{id}/delete')
 
     #country routes
@@ -30,3 +41,22 @@ def includeme(config):
     config.add_route('category_new', 'categories/new')
     config.add_route('category_edit', 'category/{id}/edit')
     config.add_route('category_delete', 'category/{id}/delete')
+
+def edit_customer_factory(request):
+    customer_id = request.matchdict['id']
+
+    page = request.dbsession.query(Customer).filter_by(id=customer_id).first()
+    if page is None:
+        next_url = request.route_url('customer_edit', customer_id=customer_id)
+        raise HTTPNotFound
+    return EditCustomer(page)
+
+class EditCustomer(object):
+    def __init__(self, page):
+        self.page = page
+
+    def __acl__(self):
+        return [
+            (Allow, 'role:editor', 'edit'),
+            (Allow, 'role:basic', 'view'),
+        ]

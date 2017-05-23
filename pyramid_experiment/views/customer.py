@@ -114,9 +114,10 @@ def search(request):
 
     return HTTPFound(location=request.route_url('customer_list', query=query))
 
-@view_config(route_name='customer_edit', renderer='../templates/customer/edit.jinja2')
+@view_config(route_name='customer_edit', renderer='../templates/customer/edit.jinja2', permission='edit')
 def edit(request):
     id = request.matchdict['id']
+    page = request.context.page
     customer = request.dbsession.query(Customer).filter_by(id=id).one()
     if customer is None:
         return HTTPFound(location=request.route_url('customer_list'))
