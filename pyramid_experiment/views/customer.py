@@ -64,6 +64,11 @@ def list(request):
                      items_per_page=10, url=page_url)
     # import ipdb; ipdb.set_trace()
 
+    user = request.user
+
+    if user is None or user.role not in ('basic', 'editor'):
+        raise HTTPForbidden
+
     if 'partial' in request.params:
         return render_to_response('../templates/customer/listPartial.jinja2',
                                   {'customers': customers},
@@ -85,7 +90,11 @@ def new(request):
     form = Form(request, schema=CustomerForm)
 
     user = request.user
-    import ipdb; ipdb.set_trace()
+
+    # import ipdb; ipdb.set_trace()
+
+    if user is None or user.role not in ('editor', 'basic'):
+        raise HTTPForbidden
 
     if 'form_submitted' in request.POST and form.validate():
         customer = form.bind(Customer())
@@ -116,6 +125,10 @@ def edit(request):
     categories = get_categories(request)
 
     form = Form(request, schema=CustomerForm, obj=customer)
+
+    user = request.user
+    if user is None or user.role != 'editor':
+        raise HTTPForbidden
 
     if 'form_submitted' in request.POST and form.validate():
         form.bind(customer)

@@ -1403,7 +1403,7 @@ table .headerSortUp.purple, table .headerSortDown.purple {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 }
 .topbar-inner, .topbar .fill {
-  zoom: 1.2;
+  zoom: 1;
   background-color: #222;
   background-color: #222222;
   background-repeat: repeat-x;

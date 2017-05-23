@@ -54,6 +54,7 @@ def main(argv=sys.argv):
         category = Category(name=u'Reseller')
         dbsession.add(category)
 
+
         editor = User(name='editor', role='editor')
         editor.set_password('editor')
         dbsession.add(editor)

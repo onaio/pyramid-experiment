@@ -1,0 +1,41 @@
+{% extends 'layout.jinja2' %}
+
+{% block title %}Login - {% endblock title %}
+
+{% block content %}
+<div style="text-align: center;top: 2em;position: relative;right: 6em;">
+	<h2 style="
+    position: relative;
+    left: 3em;
+    /* line-height: 2; */
+">
+<strong>
+    Login
+</strong><br>
+{{ message }}
+</h2>
+<form action="{{ url }}" method="post">
+<input type="hidden" name="next" value="{{ next_url }}">
+<div>
+    <label for="login" style="float: none;">Username</label>
+    <div class="input">
+    	<input type="text" name="login" value="{{ login }}">
+    </div>
+</div>
+<div>
+    <label for="password" style="float: none;">Password</label>
+    <div class="input">
+    	<input type="password" name="password">
+    </div>
+</div>
+<br/>
+<div class="clearfix">
+    <button type="submit" name="form.submitted" value="Log In" class="btn primary" style="
+    width: 18em;
+    position: relative;
+    left: 5.5em;
+">Log In</button>
+</div>
+</form>
+</div>
+{% endblock content %}

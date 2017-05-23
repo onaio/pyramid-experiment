@@ -80,7 +80,7 @@
   </head>
 
   <body>
-
+{% if request.user is not none %}
     <div class="topbar">
       <div class="fill">
         <div class="container">
@@ -91,10 +91,20 @@
             <li><a href="{{request.route_url('category_list')}}">Categories</a></li>
             <li><a href="{{request.route_url('country_list')}}">Countries</a></li>
           </ul>
-          <p class="pull-right">Logged in as <a href="#">Administrator</a></p>
+          <p class="pull-right">Logged in as <a href="#">{{ request.user.name }}</a></p>
         </div>
       </div>
     </div>
+    {% endif %}
+
+    {% if request.user is none %}
+            <p class="pull-right">
+            </p>
+            {% else %}
+            <p class="pull-right">
+            {{request.user.name}} <a href="{{request.route_url('logout')}}">Logout</a>
+            </p>
+    {% endif %}
 
     {% block content %}
     {% endblock content %}

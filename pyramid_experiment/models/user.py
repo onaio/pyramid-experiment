@@ -9,10 +9,11 @@ from .meta import Base
 
 
 class User(Base):
-    """ The SQLAlchemy declarative model class for a User object. """
+    """  Declarative model class for User object. """
     __tablename__ = 'users'
+
     id = Column(Integer, primary_key=True)
-    name = Column(Text, nullable=False, unique=True)
+    name = Column(Text, nullable=False)
     role = Column(Text, nullable=False)
 
     password_hash = Column(Text)

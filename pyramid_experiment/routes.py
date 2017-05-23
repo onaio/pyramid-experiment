@@ -1,5 +1,10 @@
 def includeme(config):
     config.add_static_view('static', 'static', cache_max_age=3600)
+
+    # login routes
+    config.add_route('login', '/login')
+    config.add_route('logout', '/logout')
+
     # home
     config.add_route('home', '/')
     config.add_route('home2', '/')
@@ -25,7 +30,3 @@ def includeme(config):
     config.add_route('category_new', 'categories/new')
     config.add_route('category_edit', 'category/{id}/edit')
     config.add_route('category_delete', 'category/{id}/delete')
-
-    # login routes
-    config.add_route('login', '/login')
-    config.add_route('logout', '/logout')
